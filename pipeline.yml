@@ -2,17 +2,17 @@
 # Resourceの定義
 resources:
 # Git Resourceの定義
-- name: hello
+- name: hello-concourse
   type: git
   source:
     uri: https://github.com/dproject21/hello-concourse.git
+    branch: master
 
 # Jobの定義
 jobs:
 - name: hello-job
   public: true # UI上でJobの結果をログイン不要で公開するかどうか
   plan:
-  - get: hello
-    trigger: true # Resourceに変更があれば自動でジョブを実行するかどうか
+  - get: hello-concourse
   - task: run-hello
     file: hello-concourse/hello.yml
